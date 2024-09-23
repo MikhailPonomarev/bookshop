@@ -1,0 +1,44 @@
+@import "../../variables";
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 165px;
+    padding-right: 160px;
+    height: 116px;
+    font-family: $mont-serrat-font;
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        font-size: 10px;
+        font-weight: bold;
+        list-style: none;
+
+        .nav-list-item {
+            cursor: pointer;
+        }
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+
+        .stub {
+            width: 17px;
+            height: 17px;
+            background-color: black;
+            cursor: pointer;
+        }
+    }
+}
