@@ -34,11 +34,27 @@ header {
         flex-direction: row;
         gap: 40px;
 
-        .stub {
+        %button {
             width: 17px;
             height: 17px;
-            background-color: black;
+            background-position: center;
+            background-repeat: no-repeat;
             cursor: pointer;
+        }
+
+        .user {
+            @extend %button;
+            background-image: url("/src/assets/header/user.svg");
+        }
+
+        .search {
+            @extend %button;
+            background-image: url("/src/assets/header/search.svg");
+        }
+
+        .shop-bag {
+            @extend %button;
+            background-image: url("/src/assets/header/shop_bag.svg");
         }
     }
 }

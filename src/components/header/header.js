@@ -32,11 +32,17 @@ const createButtonsContainer = () => {
     const buttonsContainer = document.createElement('div');
     buttonsContainer.classList.add('buttons-container');
 
-    for (let index = 0; index < 3; index++) {
-        const stub = document.createElement('div');
-        stub.classList.add('stub');
-        buttonsContainer.appendChild(stub);
-    }
+    const user = document.createElement('div');
+    user.classList.add('user');
+    buttonsContainer.appendChild(user);
+
+    const search = document.createElement('div');
+    search.classList.add('search');
+    buttonsContainer.appendChild(search);
+
+    const shopBag = document.createElement('div');
+    shopBag.classList.add('shop-bag');
+    buttonsContainer.appendChild(shopBag);
 
     return buttonsContainer;
 };
