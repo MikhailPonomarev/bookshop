@@ -1,0 +1,13 @@
+@import "/src/variables.scss";
+
+%btn {
+    width: 175px;
+    height: 45px;
+    font-family: $mont-serrat-font;
+    font-size: 10px;
+    font-weight: bold;
+    color: #4C3DB2;
+    background-color: transparent;
+    border: 1px solid #4C3DB2;
+    cursor: pointer;
+}

@@ -1,0 +1,68 @@
+@import "/src/variables.scss";
+@import "/src/components/common/button/button.scss";
+
+.books-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 75px;
+    row-gap: 95px;
+    margin-left: 355px;
+    padding-top: 45px;
+
+    .book {
+        display: flex;
+        flex-direction: row;
+        width: 424px;
+        height: 300px;
+        z-index: 1;
+
+        .thumbnail {
+            width: 212px;
+            box-shadow: 0px 30px 50px -20px rgba(126, 129, 131, 1);
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            padding-left: 35px;
+
+            .authors {
+                font-family: $open-sans-font;
+                font-size: 10px;
+            }
+
+            .title {
+                margin-top: 5px;
+                font-family: $mont-serrat-font;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            //start
+
+            //reviews count
+
+            .description {
+                margin-top: 15px;
+                font-family: $open-sans-font;
+                font-size: 10px;
+            }
+
+            .price {
+                margin-top: 12px;
+                flex-grow: 1;
+                font-family: $mont-serrat-font;
+                font-size: 13px;
+                font-weight: bold;
+            }
+
+            .buy-btn {
+                @extend %btn;
+            }
+        }
+    }
+}

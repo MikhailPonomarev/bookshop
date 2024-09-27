@@ -1,0 +1,13 @@
+@import "/src/components/common/button/button.scss";
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 215px;
+
+    .load-more-btn {
+            @extend %btn;
+            margin-left: 200px;
+        }
+}

@@ -1,0 +1,22 @@
+@import "/src/variables.scss";
+
+.sidebar-container {
+    position: absolute;
+    top: 952px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 158px;
+    padding-top: 45px;
+    width: 250px;
+    height: 650px;
+    float: left;
+    background-color: #EFEEF6;
+
+    .category-item {
+        font-family: $mont-serrat-font;
+        font-size: 14px;
+        color: #5C6A79;
+        cursor: pointer;
+    }
+}

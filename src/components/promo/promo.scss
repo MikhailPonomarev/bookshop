@@ -1,14 +1,16 @@
+$active-selector-item-color: #9E98DC;
+$inactive-selector-item-color: #EFEEF6;
+
 .promo-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
     height: 840px;
-    border: 2px dotted black;
 
     .banner {
         width: 1120px;
-        height: 702px;
+        height: 690px;
         background-image: url("/src/assets/promo/banner1.svg");
         background-position: center;
         cursor: pointer;
@@ -23,8 +25,12 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: lightgray;
+            background-color: $inactive-selector-item-color;
             cursor: pointer;
+        }
+
+        .selector-item:nth-of-type(1) {
+            background-color: $active-selector-item-color;
         }
     }
 }

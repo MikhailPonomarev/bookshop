@@ -1,4 +1,4 @@
-@import "../../variables";
+@import "/src/variables.scss";
 
 header {
     display: flex;
@@ -20,7 +20,8 @@ header {
         display: flex;
         flex-direction: row;
         gap: 40px;
-        font-size: 10px;
+        padding: 0;
+        font-size: 12px;
         font-weight: bold;
         list-style: none;
 
