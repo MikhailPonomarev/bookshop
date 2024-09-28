@@ -40,9 +40,18 @@ const createButtonsContainer = () => {
     search.classList.add('search');
     buttonsContainer.appendChild(search);
 
-    const shopBag = document.createElement('div');
-    shopBag.classList.add('shop-bag');
-    buttonsContainer.appendChild(shopBag);
+    const shopBagContainer = document.createElement('div');
+    shopBagContainer.classList.add('shop-bag-container');
+
+    const bagImg = document.createElement('div');
+    bagImg.classList.add('shop-bag');
+    shopBagContainer.appendChild(bagImg);
+
+    const bagCounter = document.createElement('div');
+    bagCounter.classList.add('shop-bag-counter', 'hidden');
+    shopBagContainer.appendChild(bagCounter);
+
+    buttonsContainer.appendChild(shopBagContainer);
 
     return buttonsContainer;
 };

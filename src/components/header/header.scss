@@ -53,9 +53,27 @@ header {
             background-image: url("/src/assets/header/search.svg");
         }
 
-        .shop-bag {
-            @extend %button;
-            background-image: url("/src/assets/header/shop_bag.svg");
+        .shop-bag-container {
+            .shop-bag {
+                    @extend %button;
+                    background-image: url("/src/assets/header/shop_bag.svg");
+                }
+            
+                .shop-bag-counter {
+                    position: relative;
+                    bottom: 8px;
+                    left: 6px;
+                    display: none;
+                    justify-content: center;
+                    align-items: center;
+                    width: 13px;
+                    height: 13px;
+                    font-family: $mont-serrat-font;
+                    font-size: 10px;
+                    border-radius: 50%;
+                    background-color: red;
+                    color: white;
+                }
         }
     }
 }

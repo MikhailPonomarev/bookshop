@@ -2,7 +2,7 @@ import { buttonComponent } from '../common/button/button';
 import './books.scss';
 
 const fetchBooks = async (category) => {
-    const apiKey = 'AIzaSyAsv8VzHXHcFJPaku9yFph8JFXvJbsLi3I';
+    const apiKey = '';
     const url = `https://www.googleapis.com/books/v1/volumes?q="subject:Architecture"&key=${apiKey}&printType=books&startIndex=0&maxResults=6&langRestrict=en`;
     let books;
 
