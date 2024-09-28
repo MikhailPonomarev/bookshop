@@ -19,8 +19,15 @@ export const promoComponent = () => {
         item.classList.add('selector-item');
         bannerSelector.appendChild(item);
     }
-
     promoContainer.appendChild(bannerSelector);
+
+    const changeBook = document.createElement('div');
+    changeBook.classList.add('change-book');
+    promoContainer.appendChild(changeBook);
+
+    const topBooks = document.createElement('div');
+    topBooks.classList.add('top-books');
+    promoContainer.appendChild(topBooks);
 
     return promoContainer;
 };

@@ -12,6 +12,30 @@ $inactive-selector-item-color: #EFEEF6;
         cursor: pointer;
     }
 
+    %mini-promo {
+        position: absolute;
+        box-shadow: 1px 37px 24px -16px rgba(158, 161, 163, 0.37);
+        cursor: pointer;
+    }
+
+    .change-book {
+        @extend %mini-promo;
+        top: 195px;
+        right: 200px;
+        width: 150px;
+        height: 205px;
+        background-image: url("/src/assets/promo/change_book.svg");
+    }
+
+    .top-books {
+        @extend %mini-promo;
+        top: 475px;
+        right: 150px;
+        width: 160px;
+        height: 275px;
+        background-image: url("/src/assets/promo/top_books.svg");
+    }
+
     .banner-selector {
         display: flex;
         flex-direction: row;
