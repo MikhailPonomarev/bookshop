@@ -7,7 +7,7 @@ export const loadMoreComponent = () => {
 
     const loadMoreBtn = buttonComponent('LOAD MORE');
     loadMoreBtn.classList.add('load-more-btn');
-    loadMoreContainer.appendChild(loadMoreBtn);
 
+    loadMoreContainer.appendChild(loadMoreBtn);
     return loadMoreContainer;
 };

@@ -10,7 +10,6 @@ export const promoComponent = () => {
     banner.src = firstBanner;
     banner.width = '1120';
     banner.height = '690';
-    promoContainer.appendChild(banner);
 
     const bannerSelector = document.createElement('div');
     bannerSelector.classList.add('banner-selector');
@@ -19,15 +18,13 @@ export const promoComponent = () => {
         item.classList.add('selector-item');
         bannerSelector.appendChild(item);
     }
-    promoContainer.appendChild(bannerSelector);
 
     const changeBook = document.createElement('div');
     changeBook.classList.add('change-book');
-    promoContainer.appendChild(changeBook);
 
     const topBooks = document.createElement('div');
     topBooks.classList.add('top-books');
-    promoContainer.appendChild(topBooks);
 
+    promoContainer.append(banner, bannerSelector, changeBook, topBooks);
     return promoContainer;
 };

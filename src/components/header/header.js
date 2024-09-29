@@ -24,7 +24,6 @@ const createNavBlock = () => {
     });
 
     navLinksBlock.appendChild(navLinksList);
-
     return navLinksBlock;
 };
 
@@ -34,34 +33,26 @@ const createButtonsContainer = () => {
 
     const user = document.createElement('div');
     user.classList.add('user');
-    buttonsContainer.appendChild(user);
 
     const search = document.createElement('div');
     search.classList.add('search');
-    buttonsContainer.appendChild(search);
 
     const shopBagContainer = document.createElement('div');
     shopBagContainer.classList.add('shop-bag-container');
 
     const bagImg = document.createElement('div');
     bagImg.classList.add('shop-bag');
-    shopBagContainer.appendChild(bagImg);
 
     const bagCounter = document.createElement('div');
     bagCounter.classList.add('shop-bag-counter', 'hidden');
-    shopBagContainer.appendChild(bagCounter);
 
-    buttonsContainer.appendChild(shopBagContainer);
-
+    shopBagContainer.append(bagImg, bagCounter);
+    buttonsContainer.append(user, search, shopBagContainer);
     return buttonsContainer;
 };
 
 export const headerComponent = () => {
     const header = document.createElement('header');
-
-    header.appendChild(createLogo());
-    header.appendChild(createNavBlock());
-    header.appendChild(createButtonsContainer());
-
+    header.append(createLogo(), createNavBlock(), createButtonsContainer());
     return header;
 };

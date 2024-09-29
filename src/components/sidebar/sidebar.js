@@ -24,10 +24,17 @@ export const sidebarComponent = () => {
     ];
 
     categories.forEach((it) => {
-        const categoryItem = document.createElement('span');
+        const categoryItem = document.createElement('div');
         categoryItem.classList.add('category-item');
-        categoryItem.innerText = it;
 
+        const activeDot = document.createElement('div');
+        activeDot.classList.add('active-item-dot');
+
+        const itemText = document.createElement('span');
+        itemText.classList.add('item-text');
+        itemText.innerText = it;
+
+        categoryItem.append(activeDot, itemText);
         sidebar.appendChild(categoryItem);
     });
 

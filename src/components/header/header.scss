@@ -21,11 +21,22 @@ header {
         flex-direction: row;
         gap: 40px;
         padding: 0;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: bold;
         list-style: none;
 
         .nav-list-item {
+            color: $grey-color;
+            cursor: pointer;
+            transition: $hover-transition;
+
+            &:hover {
+                color: $black-color;
+            }
+        }
+
+        .nav-list-item:nth-of-type(1) {
+            color: $black-color;
             cursor: pointer;
         }
     }

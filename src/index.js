@@ -1,4 +1,5 @@
-import { booksComponent } from './components/books/books';
+import { fetchBooks } from './api/fetchBooks';
+import { booksContainer, displayBooks } from './components/books/books';
 import { headerComponent } from './components/header/header';
 import { loadMoreComponent } from './components/loadmore/loadMore';
 import { promoComponent } from './components/promo/promo';
@@ -11,7 +12,7 @@ import thirdBanner from '/src/assets/promo/banner3.png';
 document.body.append(
     headerComponent(),
     promoComponent(),
-    await booksComponent(),
+    await booksContainer(),
     sidebarComponent(),
     loadMoreComponent(),
 );
@@ -67,6 +68,21 @@ setInterval(() => {
     switchNavigationItems(currentBannerIndex < banners.length ? currentBannerIndex : 0);
 }, 5000);
 
+displayBooks(await fetchBooks(0));
+
+const categoryItems = document.querySelectorAll('.category-item');
+let currentCategory = 'Architecture';
+
+for (const it of categoryItems) {
+    it.addEventListener('click', async () => {
+        document.querySelectorAll('.book').forEach((it) => it.remove());
+
+        currentCategory = it.textContent;
+        const books = await fetchBooks(0, currentCategory);
+        displayBooks(books);
+    });
+}
+
 let addedBooksCount = 0;
 const buyBtns = document.querySelectorAll('.buy-btn');
 const shopBagCounter = document.querySelector('.shop-bag-counter');
@@ -78,4 +94,10 @@ buyBtns.forEach((it) => {
         shopBagCounter.style.display = 'flex';
         shopBagCounter.innerHTML = addedBooksCount;
     });
+});
+
+document.querySelector('.load-more-btn').addEventListener('click', async () => {
+    const displayedBooksCount = document.querySelectorAll('.book').length;
+    const moreBooks = await fetchBooks(displayedBooksCount, currentCategory);
+    displayBooks(moreBooks);
 });
