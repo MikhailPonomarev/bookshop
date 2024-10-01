@@ -40,3 +40,7 @@ export const sidebarComponent = () => {
 
     return sidebar;
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.category-item').classList.add('active');
+});

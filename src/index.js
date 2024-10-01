@@ -77,6 +77,9 @@ for (const it of categoryItems) {
     it.addEventListener('click', async () => {
         document.querySelectorAll('.book').forEach((it) => it.remove());
 
+        categoryItems.forEach((it) => it.classList.remove('active'));
+        it.classList.add('active');
+
         currentCategory = it.textContent;
         const books = await fetchBooks(0, currentCategory);
         displayBooks(books);
