@@ -18,54 +18,90 @@ export const displayBooks = (books) => {
 
     books.forEach((b) => {
         const book = document.createElement('div');
+
         book.classList.add('book');
+        book.append(createThumbnail(b.thumbnail), createInfo(b));
 
-        const thumbnail = document.createElement('img');
-        thumbnail.classList.add('thumbnail');
-        thumbnail.src = b.thumbnail === undefined ? noThumbnail : b.thumbnail;
-        book.appendChild(thumbnail);
-
-        const info = document.createElement('div');
-        info.classList.add('info');
-
-        const authors = document.createElement('span');
-        authors.classList.add('authors');
-        let authorsToShow = 'No author';
-        if (b.authors) {
-            authorsToShow =
-                b.authors.length <= 3 ? b.authors.join(', ') : `${b.authors.slice(0, 3).join(', ')} and more`;
-        }
-        authors.innerText = authorsToShow;
-
-        const title = document.createElement('span');
-        title.classList.add('title');
-        title.innerText = b.title;
-
-        //append stars in info
-
-        //append ratings count in info
-
-        const description = document.createElement('p');
-        description.classList.add('description');
-        if (b.description) {
-            description.innerText =
-                b.description?.length >= 110 ? `${b.description.substring(0, 110)}...` : b.description;
-        } else {
-            description.style.display = 'none';
-        }
-
-        const price = document.createElement('span');
-        price.classList.add('price');
-        price.innerText = b.retailPrice ? `$${b.retailPrice}` : 'FREE';
-
-        const buyBtn = buttonComponent('BUY NOW');
-        buyBtn.classList.add('buy-btn');
-
-        info.append(authors, title, description, price, buyBtn);
-
-        //append info in book
-        book.appendChild(info);
-        //append book in container
         booksContainer.appendChild(book);
     });
+
+    return booksContainer;
+};
+
+const createThumbnail = (imgLink) => {
+    const thumbnail = document.createElement('img');
+
+    thumbnail.classList.add('thumbnail');
+    thumbnail.src = imgLink === undefined ? noThumbnail : imgLink;
+
+    return thumbnail;
+};
+
+const createAuthors = (authorsList) => {
+    const authors = document.createElement('span');
+
+    authors.classList.add('authors');
+    let authorsToShow = 'No author';
+    if (authorsList) {
+        authorsToShow =
+            authorsList.length <= 3 ? authorsList.join(', ') : `${authorsList.slice(0, 3).join(', ')} and more`;
+    }
+    authors.innerText = authorsToShow;
+
+    return authors;
+};
+
+const createTitle = (titleText) => {
+    const title = document.createElement('span');
+
+    title.classList.add('title');
+    title.innerText = titleText;
+
+    return title;
+};
+
+const createDescription = (descriptionText) => {
+    const description = document.createElement('p');
+
+    description.classList.add('description');
+    let descriptionTextToShow = 'Description not added';
+    if (descriptionText) {
+        descriptionTextToShow =
+            descriptionText.length >= 110 ? `${descriptionText.substring(0, 110)}...` : descriptionText;
+    }
+    description.innerText = descriptionTextToShow;
+
+    return description;
+};
+
+const createPrice = (retailPrice) => {
+    const price = document.createElement('span');
+
+    price.classList.add('price');
+    price.innerText = retailPrice ? `$${retailPrice}` : 'FREE';
+
+    return price;
+};
+
+const createBuyBtn = () => {
+    const buyBtn = buttonComponent('BUY NOW');
+
+    buyBtn.classList.add('buy-btn');
+
+    return buyBtn;
+};
+
+const createInfo = (bookInfo) => {
+    const info = document.createElement('div');
+
+    info.classList.add('info');
+    info.append(
+        createAuthors(bookInfo.authors),
+        createTitle(bookInfo.title),
+        createDescription(bookInfo.description),
+        createPrice(bookInfo.retailPrice),
+        createBuyBtn(),
+    );
+
+    return info;
 };
