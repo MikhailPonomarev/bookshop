@@ -1,5 +1,6 @@
 import { buttonComponent } from '../common/button/button';
 import './books.scss';
+import noThumbnail from '/src/assets/books/no_thumbnail.png';
 
 export const booksContainer = async () => {
     const booksContainer = document.createElement('section');
@@ -21,7 +22,7 @@ export const displayBooks = (books) => {
 
         const thumbnail = document.createElement('img');
         thumbnail.classList.add('thumbnail');
-        thumbnail.src = b.thumbnail;
+        thumbnail.src = b.thumbnail === undefined ? noThumbnail : b.thumbnail;
         book.appendChild(thumbnail);
 
         const info = document.createElement('div');
@@ -29,8 +30,12 @@ export const displayBooks = (books) => {
 
         const authors = document.createElement('span');
         authors.classList.add('authors');
-        authors.innerText =
-            b.authors.length <= 3 ? b.authors.join(', ') : `${b.authors.slice(0, 3).join(', ')} and more`;
+        let authorsToShow = 'No author';
+        if (b.authors) {
+            authorsToShow =
+                b.authors.length <= 3 ? b.authors.join(', ') : `${b.authors.slice(0, 3).join(', ')} and more`;
+        }
+        authors.innerText = authorsToShow;
 
         const title = document.createElement('span');
         title.classList.add('title');

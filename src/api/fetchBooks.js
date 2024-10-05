@@ -9,7 +9,7 @@ export const fetchBooks = async (startIndex, category = 'Architecture') => {
 
         books = Array.from(body.items).map((it) => {
             return {
-                thumbnail: it.volumeInfo.imageLinks.thumbnail,
+                thumbnail: it.volumeInfo.imageLinks?.thumbnail,
                 authors: it.volumeInfo.authors,
                 title: it.volumeInfo.title,
                 averageRating: it.volumeInfo.averageRating,
