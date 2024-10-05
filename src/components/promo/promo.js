@@ -5,7 +5,6 @@ import thirdBanner from '/src/assets/promo/banner3.svg';
 
 export const promoComponent = () => {
     const promoContainer = document.createElement('section');
-
     promoContainer.classList.add('promo-container');
 
     promoContainer.append(createBanner(), createBannerSelector(), createChangeBook(), createTobBooks());
@@ -15,7 +14,6 @@ export const promoComponent = () => {
 
 const createBanner = () => {
     const banner = document.createElement('img');
-
     banner.classList.add('banner');
     banner.src = firstBanner;
 
@@ -24,7 +22,6 @@ const createBanner = () => {
 
 const createBannerSelector = () => {
     const bannerSelector = document.createElement('div');
-
     bannerSelector.classList.add('banner-selector');
 
     for (let index = 0; index < 3; index++) {
@@ -38,7 +35,6 @@ const createBannerSelector = () => {
 
 const createChangeBook = () => {
     const changeBook = document.createElement('div');
-
     changeBook.classList.add('change-book');
 
     return changeBook;
@@ -46,7 +42,6 @@ const createChangeBook = () => {
 
 const createTobBooks = () => {
     const topBooks = document.createElement('div');
-
     topBooks.classList.add('top-books');
 
     return topBooks;

@@ -2,26 +2,29 @@ import './header.scss';
 
 export const headerComponent = () => {
     const header = document.createElement('header');
+
     header.append(createLogo(), createNavBlock(), createButtonsContainer());
+
     return header;
 };
 
 const createLogo = () => {
     const bookshopTitle = document.createElement('span');
 
-    bookshopTitle.innerText = 'Bookshop';
     bookshopTitle.classList.add('logo');
+    bookshopTitle.innerText = 'Bookshop';
 
     return bookshopTitle;
 };
 
 const createNavBlock = () => {
     const navLinksBlock = document.createElement('nav');
-    const navLinksList = document.createElement('ul');
 
+    const navLinksList = document.createElement('ul');
     navLinksList.classList.add('nav-list');
 
     const navLinksNames = ['BOOKS', 'AUDIOBOOKS', 'STATIONERY & GIFTS', 'BLOG'];
+
     navLinksNames.forEach((name) => {
         const link = document.createElement('li');
         link.innerText = name;
@@ -30,6 +33,7 @@ const createNavBlock = () => {
     });
 
     navLinksBlock.appendChild(navLinksList);
+
     return navLinksBlock;
 };
 

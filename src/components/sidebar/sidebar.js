@@ -45,6 +45,7 @@ const createCategoriesList = () => {
         itemText.innerText = it;
 
         categoryItem.append(activeDot, itemText);
+
         categoriesList.push(categoryItem);
     });
 
