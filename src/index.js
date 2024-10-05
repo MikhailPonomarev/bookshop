@@ -5,9 +5,9 @@ import { loadMoreComponent } from './components/loadmore/loadMore';
 import { promoComponent } from './components/promo/promo';
 import { sidebarComponent } from './components/sidebar/sidebar';
 import './style.scss';
-import firstBanner from '/src/assets/promo/banner1.png';
-import secondBanner from '/src/assets/promo/banner2.png';
-import thirdBanner from '/src/assets/promo/banner3.png';
+import firstBanner from '/src/assets/promo/banner1.svg';
+import secondBanner from '/src/assets/promo/banner2.svg';
+import thirdBanner from '/src/assets/promo/banner3.svg';
 
 document.body.append(
     headerComponent(),

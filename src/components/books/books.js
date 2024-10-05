@@ -29,13 +29,14 @@ export const displayBooks = (books) => {
 
         const authors = document.createElement('span');
         authors.classList.add('authors');
-        authors.innerText = b.authors.join(' ');
+        authors.innerText =
+            b.authors.length <= 3 ? b.authors.join(', ') : `${b.authors.slice(0, 3).join(', ')} and more`;
 
         const title = document.createElement('span');
         title.classList.add('title');
         title.innerText = b.title;
 
-        //append start in info
+        //append stars in info
 
         //append ratings count in info
 
