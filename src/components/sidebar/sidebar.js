@@ -1,6 +1,3 @@
-import { fetchBooks } from '../../api/fetchBooks';
-import { APP_STATE } from '../../appState';
-import { displayBooks } from '../books/books';
 import './sidebar.scss';
 
 export const sidebarComponent = () => {
@@ -53,23 +50,3 @@ const createCategoriesList = () => {
 
     return categoriesList;
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('.category-item').classList.add('active');
-
-    const categoryItems = document.querySelectorAll('.category-item');
-
-    for (const it of categoryItems) {
-        it.addEventListener('click', async () => {
-            document.querySelectorAll('.book').forEach((it) => it.remove());
-
-            categoryItems.forEach((it) => it.classList.remove('active'));
-            it.classList.add('active');
-
-            APP_STATE.setCurrentCategory(it.textContent);
-
-            const books = await fetchBooks(0, APP_STATE.getCurrentCategory());
-            displayBooks(books);
-        });
-    }
-});

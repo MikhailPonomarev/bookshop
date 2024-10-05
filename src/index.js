@@ -17,13 +17,15 @@ document.body.append(
 
 displayBooks(await fetchBooks(0));
 
-export const getBuyButtons = () => document.querySelectorAll('.buy-btn');
+const getBuyButtons = () => document.querySelectorAll('.buy-btn');
 
 let addedBooksCount = 0;
 let buyBtns = getBuyButtons();
 const shopBagCounter = document.querySelector('.shop-bag-counter');
 
-const addOnClickBuyButtonsEvent = () => {
+export const addOnClickBuyButtonsEvent = () => {
+    buyBtns = getBuyButtons();
+
     buyBtns.forEach((it) => {
         it.addEventListener('click', () => {
             addedBooksCount += 1;
@@ -36,12 +38,31 @@ const addOnClickBuyButtonsEvent = () => {
 
 addOnClickBuyButtonsEvent();
 
+document.querySelector('.category-item').classList.add('active');
+
+const categoryItems = document.querySelectorAll('.category-item');
+
+for (const it of categoryItems) {
+    it.addEventListener('click', async () => {
+        document.querySelectorAll('.book').forEach((it) => it.remove());
+
+        categoryItems.forEach((it) => it.classList.remove('active'));
+        it.classList.add('active');
+
+        APP_STATE.setCurrentCategory(it.textContent);
+
+        const books = await fetchBooks(0, APP_STATE.getCurrentCategory());
+        displayBooks(books);
+
+        addOnClickBuyButtonsEvent();
+    });
+}
+
 document.querySelector('.load-more-btn').addEventListener('click', async () => {
     const displayedBooksCount = document.querySelectorAll('.book').length;
 
     const moreBooks = await fetchBooks(displayedBooksCount, APP_STATE.getCurrentCategory());
     displayBooks(moreBooks);
 
-    buyBtns = getBuyButtons();
     addOnClickBuyButtonsEvent();
 });
