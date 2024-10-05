@@ -1,5 +1,11 @@
 import './header.scss';
 
+export const headerComponent = () => {
+    const header = document.createElement('header');
+    header.append(createLogo(), createNavBlock(), createButtonsContainer());
+    return header;
+};
+
 const createLogo = () => {
     const bookshopTitle = document.createElement('span');
 
@@ -48,11 +54,6 @@ const createButtonsContainer = () => {
 
     shopBagContainer.append(bagImg, bagCounter);
     buttonsContainer.append(user, search, shopBagContainer);
-    return buttonsContainer;
-};
 
-export const headerComponent = () => {
-    const header = document.createElement('header');
-    header.append(createLogo(), createNavBlock(), createButtonsContainer());
-    return header;
+    return buttonsContainer;
 };

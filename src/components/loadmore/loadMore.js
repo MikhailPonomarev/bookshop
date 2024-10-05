@@ -9,5 +9,6 @@ export const loadMoreComponent = () => {
     loadMoreBtn.classList.add('load-more-btn');
 
     loadMoreContainer.appendChild(loadMoreBtn);
+
     return loadMoreContainer;
 };
