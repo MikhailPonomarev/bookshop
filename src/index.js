@@ -21,6 +21,8 @@ const getBuyButtons = () => document.querySelectorAll('.buy-btn');
 
 let addedBooksCount = 0;
 let buyBtns = getBuyButtons();
+const addedBooksKey = 'addedBooks';
+localStorage.setItem(addedBooksKey, '');
 const shopBagCounter = document.querySelector('.shop-bag-counter');
 
 export const addOnClickBuyButtonsEvent = () => {
@@ -28,10 +30,30 @@ export const addOnClickBuyButtonsEvent = () => {
 
     buyBtns.forEach((it) => {
         it.addEventListener('click', () => {
-            addedBooksCount += 1;
+            const bookToAdd = it.closest('.info').querySelector('.title').innerText;
 
-            shopBagCounter.style.display = 'flex';
-            shopBagCounter.innerHTML = addedBooksCount;
+            const addedBooks = localStorage.getItem(addedBooksKey);
+            if (addedBooks.includes(bookToAdd)) {
+                it.textContent = 'BUY NOW';
+
+                if (addedBooksCount > 1) {
+                    addedBooksCount -= 1;
+                    shopBagCounter.innerText = addedBooksCount;
+                } else {
+                    addedBooksCount -= 1;
+                    shopBagCounter.style.display = 'none';
+                }
+
+                localStorage.setItem(addedBooksKey, addedBooks.replace(`${bookToAdd}/`, ''));
+            } else {
+                it.textContent = 'IN THE CART';
+
+                addedBooksCount += 1;
+                shopBagCounter.style.display = 'flex';
+                shopBagCounter.innerText = addedBooksCount;
+
+                localStorage.setItem(addedBooksKey, addedBooks + `${bookToAdd}/`);
+            }
         });
     });
 };
