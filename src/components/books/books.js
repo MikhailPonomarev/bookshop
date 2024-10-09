@@ -18,11 +18,12 @@ export const displayBooks = (books) => {
         throw new Error('books is undefined');
     }
 
-    books.forEach((b) => {
+    books.forEach((it) => {
         const book = document.createElement('div');
+        book.id = it.id;
         book.classList.add('book');
 
-        book.append(createThumbnail(b.thumbnail), createInfo(b));
+        book.append(createThumbnail(it.thumbnail), createInfo(it));
 
         booksContainer.appendChild(book);
     });

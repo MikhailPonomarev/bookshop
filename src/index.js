@@ -22,18 +22,21 @@ const getBuyButtons = () => document.querySelectorAll('.buy-btn');
 let addedBooksCount = 0;
 let buyBtns = getBuyButtons();
 const addedBooksKey = 'addedBooks';
-localStorage.setItem(addedBooksKey, '');
 const shopBagCounter = document.querySelector('.shop-bag-counter');
 
-export const addOnClickBuyButtonsEvent = () => {
+const addOnClickBuyButtonsEvent = () => {
     buyBtns = getBuyButtons();
+
+    if (!localStorage.getItem(addedBooksKey)) {
+        localStorage.setItem(addedBooksKey, '');
+    }
 
     buyBtns.forEach((it) => {
         it.addEventListener('click', () => {
-            const bookToAdd = it.closest('.info').querySelector('.title').innerText;
+            const bookToHandle = it.closest('.book').id;
 
             const addedBooks = localStorage.getItem(addedBooksKey);
-            if (addedBooks.includes(bookToAdd)) {
+            if (addedBooks.includes(bookToHandle)) {
                 it.textContent = 'BUY NOW';
 
                 if (addedBooksCount > 1) {
@@ -44,7 +47,8 @@ export const addOnClickBuyButtonsEvent = () => {
                     shopBagCounter.style.display = 'none';
                 }
 
-                localStorage.setItem(addedBooksKey, addedBooks.replace(`${bookToAdd}/`, ''));
+                const booksWithRemovedBook = JSON.parse(addedBooks.replace(bookToHandle, ''));
+                localStorage.setItem(addedBooksKey, JSON.stringify(booksWithRemovedBook));
             } else {
                 it.textContent = 'IN THE CART';
 
@@ -52,7 +56,7 @@ export const addOnClickBuyButtonsEvent = () => {
                 shopBagCounter.style.display = 'flex';
                 shopBagCounter.innerText = addedBooksCount;
 
-                localStorage.setItem(addedBooksKey, addedBooks + `${bookToAdd}/`);
+                localStorage.setItem(addedBooksKey, JSON.stringify(addedBooks + bookToHandle));
             }
         });
     });
@@ -62,11 +66,25 @@ addOnClickBuyButtonsEvent();
 
 document.querySelector('.category-item').classList.add('active');
 
+const getAllDisplayedBooks = () => document.querySelectorAll('.book');
+
+const changeBtnTextForBooksInCart = () => {
+    const addedBooks = localStorage.getItem(addedBooksKey);
+
+    getAllDisplayedBooks().forEach((it) => {
+        const bookId = it.id;
+        if (addedBooks.includes(bookId)) {
+            const btn = it.querySelector('.btn');
+            btn.innerText = 'IN THE CART';
+        }
+    });
+};
+
 const categoryItems = document.querySelectorAll('.category-item');
 
 for (const it of categoryItems) {
     it.addEventListener('click', async () => {
-        document.querySelectorAll('.book').forEach((it) => it.remove());
+        getAllDisplayedBooks().forEach((it) => it.remove());
 
         categoryItems.forEach((it) => it.classList.remove('active'));
         it.classList.add('active');
@@ -76,6 +94,7 @@ for (const it of categoryItems) {
         const books = await fetchBooks(0, APP_STATE.getCurrentCategory());
         displayBooks(books);
 
+        changeBtnTextForBooksInCart();
         addOnClickBuyButtonsEvent();
     });
 }
@@ -86,5 +105,6 @@ document.querySelector('.load-more-btn').addEventListener('click', async () => {
     const moreBooks = await fetchBooks(displayedBooksCount, APP_STATE.getCurrentCategory());
     displayBooks(moreBooks);
 
+    changeBtnTextForBooksInCart();
     addOnClickBuyButtonsEvent();
 });
